@@ -2,6 +2,8 @@ import React from 'react';
 import './ProductList.css'; 
 
 const ProductList = () => {
+    const dispatch = useDispatch();
+    const [disabledProducts, setDisabledProducts] = useState([]); // State to store disabled products
 
   const products = [
     { id: 1, name: 'Product A', price: 60 },
@@ -13,7 +15,14 @@ const ProductList = () => {
     <div className="product-list">
       <h2 className="product-list-title">Products</h2>
       <ul className="product-list-items">
-     
+     {products.map(product => (
+        <li key={product.id} className="product-list-item">
+        <span>{product.name} - ${product.price}</span>
+        <button>
+            Add to Cart
+        </button>
+    </li>
+    ))}
       </ul>
     </div>
   );
